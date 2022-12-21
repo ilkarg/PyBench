@@ -1,7 +1,9 @@
 from datetime import datetime
 
-class PyBench:
-    def run_benchmark(self, func):
-        start_time = datetime.now()
-        func()
-        print(datetime.now() - start_time)
+def benchmark(input_func):
+	def output_func(*args):
+		start_time = datetime.now()
+		ret = input_func(*args)
+		print(f'{input_func.__name__}: {datetime.now() - start_time}')
+		return ret
+	return output_func
